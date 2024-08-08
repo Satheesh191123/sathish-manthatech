@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> My Gallary </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        header {
+            background-color:crimson;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            width: 100%;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .gallery img {
+            margin: 10px;
+            width: 200px;
+            height: auto;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            transition: transform 0.2s;
+        }
+        .gallery img:hover {
+            transform: scale(1.05);
+            border-color: #777;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Rafale Images Gallary </h1>
+    </header>
+    <div class="gallery">
+        <img src="https://tse4.mm.bing.net/th?id=OIP.wAI6J4te7CXg6LXCMWIoPAHaEL&pid=Api&P=0&h=180" alt="Image 1">
+        <img src="https://www.mbda-systems.com/wp-content/uploads/2021/03/Rafale-%C2%A9-Loic-PEDEHONTA-Armee-de-lair-Armees.jpg" alt="Image 2">
+        <img src="https://www.portail-aviation.com/wp-content/uploads/2014/12/30082014_Artic_Thunder_OR13655.jpg" alt="Image 3">
+        <img src="https://images.news18.com/ibnlive/uploads/2019/10/Rafale.jpg" alt="Image 4">
+    </div>
+</body>
+</html>

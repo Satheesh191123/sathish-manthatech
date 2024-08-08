@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Header_Footer_Example</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image:linear-gradient(130deg,#f9fcfb);
+            background-repeat:no-repeat;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color:aquamarine;
+            color:crimson;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            background-color:darkgoldenrod;
+        }
+        nav a {
+            color: white;
+            padding: 14px 20px;
+            text-decoration: none;
+            display: block;
+        }
+        nav a:hover {
+            background-color: #555;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        
+        }
+        .content, .services {
+            width: 100%;
+            max-width: 1200px;
+            margin: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px;
+            display:flex;
+            align-items: center;
+
+                }
+                
+                
+        footer {
+            background-color: #5e11db;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            position:relative;
+            width: 100%;
+    
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1> Event Management Company </h1>
+    </header>
+    
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About Us</a>
+        <a href="#services">Services</a>
+        <a href="#contact">Contact</a>
+    </nav>
+    
+    <div class="container">
+        <section class="content">
+            <img src="https://tse1.mm.bing.net/th?id=OIP.7bPwt8H61SA156JfLvIdrwHaEK&pid=Api&P=0&h=180">
+            <div class="content-text">
+                <h2>Welcome to Our Event Management Company </h2>
+                <p> Our Company provides a wide range of services,and we handle all types of events and functions.</p>
+                </div>
+        </section>
+        
+        <section class="services">
+            <div class="services-text"> 
+                <img src="https://tse2.mm.bing.net/th?id=OIP.BW3ykspH-417cBTF_IZlfAHaDz&pid=Api&P=0&h=180"alt="Event Management Image">
+                <h2>Services Provided</h2>
+                
+                <ul>
+                    <li>Event Planning</li>
+                    <li>Budget Management</li>
+                    <li>Venue Selection</li>
+                    <li>Vendor Coordination</li>
+                    <li>Marketing and Promotion</li>
+                    <li>Post-Event Evaluation</li>
+                </ul>
+                
+                </div>
+                 
+        </section>
+    </div>
+    <footer>
+        <p>&copy; 2024 Event Management Company . All rights reserved.</p>
+    </footer>
+</body>
+</html>

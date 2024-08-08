@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login_Form Example</title>
+    <style>
+        body{
+            font-family: 'Times New Roman', Times, serif;
+            background-color:bisque;
+        }
+        button{
+            background-color :antiquewhite;
+            width:20;
+            color:black;
+            padding:6px;
+            margin:8px opx;
+            Cursor: pointer;
+        }
+        form{
+            border:px solid;
+        }
+        input[type=text],input[type=password]
+        {
+            width:20%;
+            margin:8px;
+            padding: 12px 20px;
+            display: inline-block;
+            border: 2px solid greenyellow;
+            box-sizing: border-box;
+
+        }
+        button:hover{
+            opacity: 1;
+        }
+        .cancelbutton{
+            width:auto;
+            padding: 10px 18px;
+            margin: 10px 5px;
+        }
+       .container{
+        padding:25px;
+        background-color: gray;
+       }
+    </style>
+</head>
+<body>
+    <h1> Student Login Form </h1>
+    <form>
+        <div class="container">
+            <lable for="username">Username :</lable>
+            <input type="text"placeholder="Enter Username"name="username"required><br><br>
+            <lable for="Password:">Password :</lable>
+            <input type="password"placeholder="Enter Password"name="Password"required><br><br>
+            <button type="submit">Login </button>
+            <input type="checkbox"checked="checked">Remember me<br><br>
+            <button type="button"class="cancelbutton">Cancel</button><br><br>
+            <a href="#"> Forgot Password</a>
+                </div>
+    </form>
+</body>
+</html>

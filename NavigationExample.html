@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navigation Bar Example </title>
+    <style>
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+        }
+        .navbar{
+            display: flex;
+            justify-content: center;
+            background-color :brown;
+        }
+        .navbar a{
+            padding: 14px 20px;
+            display: block;
+            color: white;
+            text-align: center;
+
+        }
+        .navbar a:hover{
+            background-color :bisque;
+            color: black;
+        }
+        .content{
+            padding: 20px;
+        }     
+        .section{
+            padding :20px 0;
+            border-bottom: 1px solid #ccc;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+    </div>
+    <div class="content">
+        <div id="Home" class="section">
+        <h1> Home </h1>
+        <p> Welcome to our Website </p>
+        </div>
+        <div id="about"class="section">
+        <h1>About</h1>    
+        <p> Know more about us </p>
+        </div>
+        <div id="services"class="section">
+        <h1>Services</h1>   
+        <p> Discover our services. </p>
+        </div>
+        <div id="contact"class="section">
+        <h1>Contact</h1>  
+        <p>Touch with us </p>  
+        </div>
+        </div>
+ </body>
+</html>
