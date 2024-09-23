@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Salary Form </title>
+    <style>
+    body{
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        padding: 15px;
+        text-align: center;
+    }
+    </style>
+</head>
+<body>
+    <h2> Employee Salary Caluculations </h2>
+    <form id="Salary-Form">
+    <label for="deductions"> Enter Deductions Amount : </label>   
+    <input type="number" id="deductions" placeholder="Enter Deduction Amount" required><br><br>
+    <button type="button" onclick="calculateSalary()"> Calculate Salary </button><br><br>
+    </form>
+    <div id="result"> </div>
+    <script>
+        function calculateSalary(){
+           const monthlyPayScale=25000;
+           const deductions = parseFloat(document.getElementById('deductions').value); //(parseFloat)string arguments and returns a floating point number
+            if(isNaN(deductions) || deductions < 0){
+                document.getElementById('result')
+                alert("Please enter a valid deduction amount !");
+                return;
+            }
+                const finalSalary = monthlyPayScale - deductions;
+                document.getElementById('result').innerText="Salary after deductions : Rs."  + finalSalary;
+            }
+        </script>
+    </body>
+</html>
