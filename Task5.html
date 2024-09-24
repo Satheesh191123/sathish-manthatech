@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Calculator</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; margin: 20px;
+            text-align: center;
+            height: 10px;
+        }
+        input { 
+            margin: 10px 0; 
+        }
+        h1{
+        color: brown;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>Loan Calculator</h1>
+    <p>
+        <label for="loanAmount">Loan Amount:</label>
+        <input type="number" id="loanAmount" required>
+    </p>
+    <p>
+        <label for="interestRate">Interest Rate (%):</label>
+        <input type="number" id="interestRate" required>
+    </p>
+    <p>
+        <label for="loanTerm">Loan Term (years):</label>
+        <input type="number" id="loanTerm" required>
+    </p>
+    <p>
+        <label for="emiPaid">EMIs Paid:</label>
+        <input type="number" id="emiPaid" required>
+    </p>
+    <button onclick="calculateLoan()">Calculate EMI</button>
+    <button onclick="checkLoanStatus()">Check Loan Status</button>
+
+    <h2>Results</h2>
+    <p id="emiResult"></p>
+    <p id="loanStatus"></p>
+<script>
+    class Loan {
+        constructor(loanAmount, interestRate, loanTerm) {
+            this.loanAmount = loanAmount;
+            this.interestRate = interestRate / 100;
+            this.loanTerm = loanTerm;
+            this.emi = this.calculateMonthlyPayment();
+        }
+    
+        calculateMonthlyPayment() {
+            const monthlyRate = this.interestRate / 12;
+            const numberOfPayments = this.loanTerm * 12;
+            const emi = (this.loanAmount * monthlyRate * Math.pow(1 + monthlyRate, numberOfPayments)) /
+                        (Math.pow(1 + monthlyRate, numberOfPayments) - 1);
+            return emi.toFixed(2);
+        }
+    
+        checkLoanStatus(emiPaid) {
+            const totalPayments = this.loanTerm * 12;
+            const remainingPayments = totalPayments - emiPaid;
+            const totalAmountPaid = emiPaid * this.emi;
+            const totalAmountDue = this.loanAmount * (1 + this.interestRate) - totalAmountPaid;
+    
+            return {
+                remainingPayments,
+                totalAmountDue: totalAmountDue > 0 ? totalAmountDue.toFixed(2) : "Loan cleared!"
+            };
+        }
+    }
+    
+    function calculateLoan() {
+        const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+        const interestRate = parseFloat(document.getElementById('interestRate').value);
+        const loanTerm = parseInt(document.getElementById('loanTerm').value);
+        const loan = new Loan(loanAmount, interestRate, loanTerm);
+        document.getElementById('emiResult').innerText = `Monthly EMI: INR ${loan.emi}`;
+    }
+    
+    function checkLoanStatus() {
+        const emiPaid = parseInt(document.getElementById('emiPaid').value);
+        const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+        const interestRate = parseFloat(document.getElementById('interestRate').value);
+        const loanTerm = parseInt(document.getElementById('loanTerm').value);
+        const loan = new Loan(loanAmount, interestRate, loanTerm);
+        const status = loan.checkLoanStatus(emiPaid);
+    
+        document.getElementById('loanStatus').innerText = 
+            `Remaining EMIs: ${status.remainingPayments}, Total Amount Due: INR ${status.totalAmountDue}`;
+    }
+    </script>
+</body>
+</html>
