@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loan Manager</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .loan-form {
+            margin-bottom: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            border-radius: 10px;
+        }
+        h1{
+            text-align: center;
+            color: hotpink;
+        }
+        h2{
+            text-align: center;
+            color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+    <h1>Loan Manager</h1>
+    <div class="loan-form">
+        <h2>Application for Loan</h2>
+        <label for="applicantName">Name:</label>
+        <input type="text" id="applicantName" required><br>
+        <label for="monthlyIncome">Monthly Income:</label>
+        <input type="number" id="monthlyIncome" required><br>
+        <label for="accountBalance">Account Balance:</label>
+        <input type="number" id="accountBalance" required><br>
+        <button onclick="applyForLoan()">Apply for Loan</button>
+    </div>
+    
+    <h2>Loan Applications</h2>
+    <ul id="loanList"></ul>
+
+    <script>
+        class Loan {
+    constructor(name, monthlyIncome, accountBalance) {
+        this.name = name;
+        this.monthlyIncome = monthlyIncome;
+        this.accountBalance = accountBalance;
+        this.status = 'Pending';
+    }
+}
+
+class LoanManager {
+    constructor() {
+        this.loans = [];
+    }
+
+    applyLoan(name, monthlyIncome, accountBalance) {
+        const newLoan = new Loan(name, monthlyIncome, accountBalance);
+        this.loans.push(newLoan);
+        this.checkEligibility(newLoan);
+    }
+
+    checkEligibility(loan) {
+        if (loan.monthlyIncome >= 30000 && loan.accountBalance >= 1000) {
+            this.approveLoan(loan);
+        } else {
+            this.rejectLoan(loan);
+        }
+    }
+
+    approveLoan(loan) {
+        loan.status = 'Approved';
+        this.updateLoanList();
+    }
+
+    rejectLoan(loan) {
+        loan.status = 'Rejected';
+        this.updateLoanList();
+    }
+
+    updateLoanList() {
+        const loanList = document.getElementById('loanList');
+        loanList.innerHTML = '';
+        this.loans.forEach(loan => {
+            const listItem = document.createElement('li');
+            listItem.textContent = `${loan.name}: ${loan.status}`;
+            loanList.appendChild(listItem);
+        });
+    }
+}
+
+const loanManager = new LoanManager();
+
+function applyForLoan() {
+    const name = document.getElementById('applicantName').value;
+    const monthlyIncome = parseInt(document.getElementById('monthlyIncome').value, 10);
+    const accountBalance = parseInt(document.getElementById('accountBalance').value, 10);
+    
+    loanManager.applyLoan(name, monthlyIncome, accountBalance);
+    
+    document.getElementById('applicantName').value = '';
+    document.getElementById('monthlyIncome').value = '';
+    document.getElementById('accountBalance').value = '';
+}
+    </script>
+</body>
+</html>
