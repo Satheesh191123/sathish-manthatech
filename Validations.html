@@ -1,0 +1,150 @@
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Validation Example </title>
+    <style>
+        form{
+            margin:0 auto;
+            padding: 20px;
+            max-width: 700px;
+            background-color:sienna;
+            border-radius: 10px;
+
+        }
+        body{
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: bisque;
+            margin: 5px;
+            padding: 5px;
+            display: flex;
+            justify-content:center;
+            align-items: center;
+            height: 100mvh;
+        }
+         h1{
+            text-align: center;
+            margin-bottom: 5px;
+         }
+         label{
+            text-align: justify;
+            display: block;
+            margin-bottom: 5px;
+            color:black; 
+         }
+         input[type="text"],input[type="password"],input[type="email"],input[type="number"]{
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px;
+            border-radius: 5px;
+            box-sizing: border-box;
+         }
+         input[type="submit"],input[type="checkbox"]{
+            width: 100%;
+            padding: 10px;
+            background-color: blueviolet;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+         }
+         input[type="reset"]{
+            width: 100%;
+            padding: 10px;
+            background-color:aqua;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+         }
+    </style>
+ </head>
+ <body>
+    <form id="ValidationForm" onsubmit="return ValidationForm()">
+    <h1> Registration Form </h1><br><br>
+    <p>
+        <label for="username"> Name : </label>
+        <input type="text" id="username" name = "Username" placeholder="Enter username" />
+        <span id="usernameError" class="ErrorMessage"></span>
+    </p>
+
+    <p>
+        <label for="password"> Password : </label>
+        <input type="password" id="password" name="Password" placeholder="Enter Your Password"/>
+        <span id="passwordError" class="ErrorMessage"></span>
+    </p>
+    <p>
+        <label for="email"> Email: </label>
+        <input type="email" id="email" name="Email" placeholder="Enter Your Email"/>
+        <span id="emailError" class="ErrorMessage"></span>
+    </p>
+    <p>
+        <label for="mobileNumber"> Mobile Number : </label>
+        <input type="text" id="mobileNumber" name="MobileNumber" placeholder="Enter your Mobile Number"/>
+        <span id="mobileNumberError" class="ErrorMessage"></span>
+    </p>
+    <p>
+        <input type="checkbox" id="agree" name="Agree"/>
+        <label for="agree"> I Agree to the above given information </label>
+        <span id="agreeError" class="ErrorMessage"></span>
+    </p>
+    <p>
+        <input type="submit" value="Send" name="Submit" />
+        <input type="reset" value="Reset" name="Reset"/>
+    </p>
+    </form>
+    <script>
+        function ValidationForm(){
+        const username= document.getElementById('username').value;
+        const password=document.getElementById('password').value;
+        const email=document.getElementById('email').value;
+        const mobileNumber=document.getElementById('mobileNumber').value;
+        const agree=document.getElementById('agree').checked;
+
+        const UsernameError=document.getElementById('usernameError');
+        const PasswordError=document.getElementById('passwordError');
+        const EmailError=document.getElementById('emailError');
+        const MobileNumberError=document.getElementById('mobileNumberError');
+        const AgreeError=document.getElementById('agreeError');
+
+        UsernameError.textContent="";
+        PasswordError.textContent="";
+        EmailError.textContent="";
+        MobileNumberError.textContent="";
+        AgreeError.textContent="";
+
+        let isValid=true;
+        
+        if(username.includes(" ")){
+            UsernameError.textContent="Please enter your correct Username";
+            isValid=false;
+        }
+        const hasUpperCase = /[A-Z]/.test(password);
+        const hasLowerCase = /[a-z]/.test(password);
+        const hasDigit = /\d/.test(password);
+
+        if (!(hasUpperCase && hasLowerCase && hasDigit)){
+            PasswordError.textContent="Password must have atleast one uppercase letter,one lowercase letter,and one digit.";
+            isValid=false;
+        }
+        if(email === "" || !email.includes("@gmail.com")){
+            EmailError.textContent="Email must end with @gmail.com";
+            isValid=false;
+        }
+        let mobilePattren = /^\d{10}$/;
+        if(!mobilePattren.test(mobileNumber)){
+            MobileNumberError.textContent="Mobile number should be 10 digits";
+            isValid=false;
+        }
+        if(!agree){
+            AgreeError.textContent="Please agree to the above given information";
+            isValid=false;
+        }
+        return isValid;
+    }
+        </script>
+ </body>
+ </html>
