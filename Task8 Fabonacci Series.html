@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Fabonacci Series </title>
+</head>
+<body>
+    <h2> Fabonacci series in Reverse Order </h2>
+    <script>
+        var a = 1, b=0,res,num;
+        num = prompt("Enter Fabonacci Number");
+        document.write("Fabonacci series of "+num+" is ");
+        for(var i=0;i<num;i++){
+        document.write(" "+b);
+        res = a+b;
+        a = b;
+        b = res;    
+        }
+        document.write(" " + "<br>");
+        document.write("Fabonacci series of "+num+" in Reverse Order is");
+        for(i = 0;i<num;i++){
+        document.write(" "+a);
+        res = b-a;
+        b = a;
+        a = res;    
+        }
+
+    </script>
+</body>
+</html>
