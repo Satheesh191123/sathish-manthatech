@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Google Translation Example </title>
+<style>
+    body{
+        font-family: Arial, Helvetica, sans-serif;
+        padding: 20px;
+    }
+    h1{
+margin-bottom: 20px;
+    }
+    select{
+        padding: 10px;
+        font-size: 16px;
+    }
+</style>
+</head>
+<body>
+    <h1 id="traslatedText"> Hi Welcome to google translation </h1>
+    <label for="SelectLanguage"> Select Language </label>
+    <select id="SelectLanguage" onchange="traslateText()">
+    <option value="hin"> Hindi </option>
+    <option value="eng">  English </option>
+    <option value="fre">  French </option>
+    <option value="tel"> Telugu </option>
+    <option value="dut"> Dutch </option> 
+    </form>
+    <script>
+    const translations = {
+            eng: "Hi, welcome to Google translation",
+            hin: "नमस्ते, गूगल अनुवाद में आपका स्वागत है",
+            fre: "Bonjour, bienvenue dans Google traduction",
+            tel: "హాయ్, గూగుల్ అనువాదానికి స్వాగతం",
+            dut: "Hallo, welkom bij Google-vertaling"
+        };
+    function traslateText(){
+    const selectLanguage = document.getElementById("SelectLanguage").value;
+    const traslatedText = translations[selectLanguage];
+    document.getElementById("traslatedText").innerHTML=traslatedText;
+    }
+    </script>
+</body>
+</html>
