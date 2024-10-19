@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Login Form </title>
+   <style>
+   body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.login-container {
+    background: white;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 32px;
+    color: #3897f0;
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin: 10px 0 5px;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border 0.3s;
+}
+
+input:focus {
+    border-color: #3897f0;
+    outline: none;
+}
+
+button {
+    width: 100%;
+    padding: 10px;
+    background-color: #3897f0;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #3071b3;
+}
+
+.error-messages {
+    color: red;
+    margin-top: 10px;
+    font-size: 14px;
+}
+   </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1> Instagram </h1>
+        <form id="loginForm">
+            <label for="loginInput">Phone number, username, or email:</label>
+            <input type="text" id="loginInput" placeholder="Username or Email" required>
+            <label for="password">Password:</label>
+            <input type="password" id="password" placeholder="Password" required>
+            <button type="submit">Log In</button>
+        </form>
+        <div id="errorMessages" class="error-messages"></div>
+    </div>
+<script>
+    document.getElementById('loginForm').addEventListener('submit', function (event) {
+    event.preventDefault();
+
+    const loginInput = document.getElementById('loginInput').value.trim();
+    const password = document.getElementById('password').value;
+    const errorMessages = document.getElementById('errorMessages');
+    errorMessages.innerHTML = '';
+
+    const validationResult = validate(loginInput, password);
+    
+    if (validationResult.isValid) {
+        alert('Login successful!');
+    } else {
+        displayErrors(validationResult.errors);
+    }
+});
+
+function validate(loginInput, password) {
+    const errors = [];
+    let isValid = true;
+
+    if (!validatePassword(password)) {
+        isValid = false;
+        errors.push('Password must be at least 8 characters long and include at least one uppercase letter, one lowercase letter, one digit, and one special character.');
+    }
+
+    if (!validateEmail(loginInput) && !validateUsername(loginInput) && !validateMobile(loginInput)) {
+        isValid = false;
+        errors.push('Input must be a valid email, username, or mobile number.');
+    }
+
+    return { isValid, errors };
+}
+
+function validatePassword(password) {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return passwordRegex.test(password);
+}
+
+function validateEmail(email) {
+    return /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(email);
+}
+
+function validateUsername(username) {
+    return /^[a-zA-Z0-9._]+$/.test(username);
+}
+
+function validateMobile(mobile) {
+    return /^\d{10}$/.test(mobile);
+}
+
+function displayErrors(errors) {
+    const errorMessages = document.getElementById('errorMessages');
+    errors.forEach(error => {
+        errorMessages.innerHTML += `<p>${error}</p>`;
+    });
+}
+
+</script>
+</body>
+</html>
