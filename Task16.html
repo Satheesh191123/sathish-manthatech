@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magnify Image Example</title>
+    <style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+    }
+    
+    .magnifier-container {
+        position: relative;
+    }
+    
+    .image {
+        width: 300px;
+        height: auto;
+    }
+    
+    .imageDisplay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-repeat: no-repeat;
+        background-size: 300px 300px; 
+        background-position: center;
+        visibility: hidden; 
+        pointer-events: none; 
+    }
+    </style>
+</head>
+<body>
+<div class="magnifier-container">
+    <img src="https://www.industryconnect.org/wp-content/uploads/2018/10/front-end.jpg" alt="Image to magnify" class="image">
+</div>  
+<div class="imageDisplay" id="imageDisplay" ></div>  
+<script>
+    const image=document.querySelector('.image');
+    const imageDisplay=document.getElementById('imageDisplay');
+    image.addEventListener('mousemove', function(event){
+        const {offsetX ,offsetY} = event;
+
+    imageDisplay.style.visibility = 'visible';
+    imageDisplay.style.backgroundImage = `url(${this.src})`;
+    imageDisplay.style.backgroundPosition = `-${offsetX * 1}px -${offsetY * 1}px`;
+    });
+    image.addEventListener('mouseleave', function() {
+    imageDisplay.style.visibility = 'hidden';
+});
+</script>
+</body>
+</html>
