@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timestamp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        button {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Timestamp</h1>
+    
+    <div>
+        <button onclick="generateTimestamps()">Generate Timestamps</button>
+    </div>
+    
+    <div id="timestamps"></div>
+
+    <script>
+        function generateTimestamps() {
+            const now = new Date();
+            const dd = String(now.getDate()).padStart(2, '0');
+            const mm = String(now.getMonth() + 1).padStart(2, '0'); // Months are 0-based
+            const yyyy = now.getFullYear();
+            const dateFormat = `${dd}/${mm}/${yyyy}`;
+
+            const hh = String(now.getHours()).padStart(2, '0');
+            const min = String(now.getMinutes()).padStart(2, '0');
+            const sec = String(now.getSeconds()).padStart(2, '0');
+            const timeFormat = `${hh}.${min}.${sec}`;
+
+            const secondsAgo = Math.floor((now - new Date(now.getFullYear(), now.getMonth(), now.getDate(), hh, min, sec)) / 1000);
+            const Readable = getHumanReadableTime(secondsAgo);
+
+            const timestampsDiv = document.getElementById('timestamps');
+            timestampsDiv.innerHTML = `
+                <p>Date (dd/mm/yyyy): ${dateFormat}</p>
+                <p>Time (hh.mm.ss): ${timeFormat}</p>
+                <p>Time ago: ${Readable}</p>
+            `;
+        }
+
+        function getHumanReadableTime(seconds) {
+            const minutes = Math.floor(seconds / 60);
+            const hours = Math.floor(seconds / 3600);
+            const days = Math.floor(seconds / 86400);
+            const months = Math.floor(seconds / (30 * 86400)); 
+            const years = Math.floor(seconds / (365 * 86400));
+
+            if (seconds < 60) return `${seconds} second${seconds === 1 ? '' : 's'} ago`;
+            if (minutes < 60) return `${minutes} minute${minutes === 1 ? '' : 's'} ago`;
+            if (hours < 24) return `${hours} hour${hours === 1 ? '' : 's'} ago`;
+            if (days < 30) return `${days} day${days === 1 ? '' : 's'} ago`;
+            if (months < 12) return `${months} month${months === 1 ? '' : 's'} ago`;
+            return `${years} year${years === 1 ? '' : 's'} ago`;
+        }
+    </script>
+</body>
+</html>
