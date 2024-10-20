@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Reset Password Example </title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .error {
+            color: red;
+            display: none;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Reset Password</h2>
+        <form>
+            <label for="new-password">New Password</label>
+            <input type="password" id="new-password" />
+            <label for="confirm-password">Confirm Password</label>
+            <input type="password" id="confirm-password" />
+            <span id="error-message" class="error"></span>
+        </form>
+    </div>
+    <script>
+        const newPasswordField = document.getElementById('new-password');
+        const confirmPasswordField = document.getElementById('confirm-password');
+        const errorMessage = document.getElementById('error-message');
+
+        function disableCopyPaste(event) {
+            event.preventDefault();
+            const action = event.type === 'copy' ? 'Copy' : 'Paste';
+            showError(`${action} is restricted`);
+        }
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none'; 
+            }, 2000);
+        }
+        function disableRightClick(event) {
+            event.preventDefault();
+            showError('Right-click is restricted');
+        }
+        function attachEventListeners(field) {
+            field.addEventListener('copy', disableCopyPaste);
+            field.addEventListener('paste', disableCopyPaste);
+            field.addEventListener('contextmenu', disableRightClick);
+        }
+        attachEventListeners(newPasswordField);
+        attachEventListeners(confirmPasswordField);
+    </script>
+</body>
+</html>
